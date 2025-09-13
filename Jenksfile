@@ -1,0 +1,26 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "devops-practice"
+        IMAGE_TAG = "v1.0.${env.BUILD_ID}"
+    }
+
+    stages {
+        stage('Build') {
+            steps {
+                git branch: 'main', url: 'https://github.com/akshaymuroor/devops-practice.git'
+                sh 'mvn clean install'
+            }
+        }
+
+        stage('Docker Build') {
+            steps {
+                script {
+                    sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                }
+            }
+        }
+
+    }
+}
