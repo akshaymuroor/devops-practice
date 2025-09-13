@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/demo-mac-api.jar devops-practice.jar
 
 # Expose the application port
-EXPOSE 8080
+EXPOSE 9090
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "devops-practice.jar"]
